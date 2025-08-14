@@ -1,6 +1,7 @@
 Vehicle Registration Dashboard 🚗
 This project is an interactive dashboard built with Streamlit and Python to analyze vehicle registration data from an investor's perspective. It provides a clean, user-friendly interface to visualize key performance indicators, trends, and growth metrics.
 
+🖼️ Dashboard Screenshot
 ✨ Features
 Year-over-Year (YoY) & Quarter-over-Quarter (QoQ) Analysis: Instantly view growth metrics for total vehicles.
 
