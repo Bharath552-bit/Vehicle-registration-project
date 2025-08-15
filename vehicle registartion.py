@@ -6,10 +6,6 @@ from dateutil.relativedelta import relativedelta
 import plotly.express as px
 
 # --- 1. Data Generation (Mock Data) ---
-# This function generates a sample DataFrame. In a real-world scenario, you would
-# replace this with your data loading function (e.g., from a CSV, database, or API).
-# Instructions to replace this data are provided below.
-
 def generate_mock_data():
     """Generates a sample DataFrame for vehicle registration data."""
     np.random.seed(42)
@@ -28,8 +24,7 @@ def generate_mock_data():
             for category in categories:
                 # Generate random vehicle counts for each month
                 base_vehicles = np.random.randint(5000, 20000)
-                # Introduce a slight positive trend over time
-                # Ensure consistent types by subtracting a Timestamp from a Timestamp
+                
                 trend_factor = (date - start_date).days / 1000
                 vehicles = int(base_vehicles * (1 + 0.05 * trend_factor) + np.random.normal(0, 1000))
                 
@@ -39,18 +34,6 @@ def generate_mock_data():
     return df
 
 # --- 2. Data Loading & Preprocessing ---
-# To use your own data, replace the line below with a data loading method.
-# For example, to load from a CSV file:
-# df = pd.read_csv('your_data.csv')
-# Make sure your CSV has columns named 'registration_date', 'vehicle_category',
-# 'manufacturer', and 'total_vehicles'.
-#
-# If your date column is not in datetime format, convert it like this:
-# df['registration_date'] = pd.to_datetime(df['registration_date'])
-#
-# If you are able to scrape the data from the provided website, a tool like
-# Selenium would be required to interact with the dashboard.
-# Once you have the data, ensure it is in the same format as the mock data.
 
 df = generate_mock_data()
 df['year'] = df['registration_date'].dt.year
@@ -127,7 +110,6 @@ def calculate_growth(df_input, period='YoY'):
         current_quarter = pd.to_datetime(current_period_end).to_period('Q')
         previous_quarter = current_quarter - 1
         
-        # Aggregate by quarter
         df_quarterly = df_input.groupby(df_input['registration_date'].dt.to_period('Q'))['total_vehicles'].sum().reset_index()
         df_quarterly['registration_date'] = df_quarterly['registration_date'].astype(str)
         
